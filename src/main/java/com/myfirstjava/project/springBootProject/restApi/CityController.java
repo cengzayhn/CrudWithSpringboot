@@ -10,36 +10,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myfirstjava.project.springBootProject.Entities.City;
 import com.myfirstjava.project.springBootProject.Service.ICityService;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class CityController {
+	@NonNull
 	private ICityService cityService;
-	
-	@Autowired
-	public CityController(ICityService cityService) {
-		this.cityService = cityService;
-	}
-	 
+
 	@GetMapping("/cities")
 	public List<City> get(){
-		return this.cityService.getAll();
+		return cityService.getAll();
 	}
 	@GetMapping("/cities/{id}")
 	public City getWithId(@PathVariable int id) {
-		return this.cityService.getById(id);
+		return cityService.getById(id);
 	}
 	@PostMapping("/add")
 	public void add(City city) {
-		this.cityService.add(city);
+		cityService.add(city);
 	}
 	@PostMapping("/update")
 	public void update(City city) {
-		this.cityService.update(city);
+		cityService.update(city);
 	}
 	@PostMapping("/delete")
 	public void delete(City city) {
-		this.cityService.delete(city);
-	}
-	
-	
+		cityService.delete(city);
+	}	
 }

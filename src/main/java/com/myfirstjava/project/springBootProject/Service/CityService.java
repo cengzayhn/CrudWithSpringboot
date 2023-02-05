@@ -6,45 +6,41 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myfirstjava.project.springBootProject.Dal.ICityDataAccess;
 import com.myfirstjava.project.springBootProject.Entities.City;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CityService implements ICityService{
 
+	@NonNull
 	private ICityDataAccess cityData;
-	
-	@Autowired
-	public CityService(ICityDataAccess cityData) {
-		this.cityData = cityData;
-	}
 	
 	@Override
 	@Transactional
 	public List<City> getAll() {
-		return this.cityData.getAll();
+		return cityData.getAll();
 	}
-
 	@Override
 	@Transactional
 	public void add(City city) {
-		this.cityData.add(city);
+		cityData.add(city);
 		
 	}
-
 	@Override
 	@Transactional
 	public void update(City city) {
-		this.cityData.update(city);
+		cityData.update(city);
 	}
-
 	@Override
 	@Transactional
 	public void delete(City city) {
-		this.cityData.delete(city);
+		cityData.delete(city);
 	}
-
 	@Override
 	@Transactional
 	public City getById(int id) {
-		return this.cityData.getById(id);
+		return cityData.getById(id);
 	}
 
 }
